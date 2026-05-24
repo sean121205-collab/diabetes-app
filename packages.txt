@@ -1,0 +1,8 @@
+korean_fonts = [
+    "NanumGothic",
+    "NanumBarunGothic",
+    "NanumMyeongjo",
+    "Malgun Gothic",
+    "Apple SD Gothic Neo",
+    "DejaVu Sans",
+]
