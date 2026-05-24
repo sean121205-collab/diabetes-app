@@ -12,12 +12,14 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score
 import os
 
-font_path = "./NanumGothic.ttf"
-font_prop = fm.FontProperties(fname=font_path)
+font_path = os.path.join(os.path.dirname(__file__), "NanumGothic.ttf")
 
-plt.rc('font', family=font_prop.get_name())
-plt.rcParams['axes.unicode_minus'] = False
+if os.path.exists(font_path):
+    fm.fontManager.addfont(font_path)
+    font_name = fm.FontProperties(fname=font_path).get_name()
+    plt.rcParams["font.family"] = font_name
 
+plt.rcParams["axes.unicode_minus"] = False
 # ── 페이지 기본 설정 ──────────────────────────────────────────────
 st.set_page_config(
     page_title="당뇨병 위험도 예측",
