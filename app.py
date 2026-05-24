@@ -13,15 +13,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score
 import os
 
-if platform.system() == 'Windows':
-    plt.rc('font', family='Malgun Gothic')
-elif platform.system() == 'Darwin':
-    plt.rc('font', family='NanumBarunGothic')
-else:
-    plt.rc('font', family='NanumGothic')
-
-plt.rcParams['axes.unicode_minus'] = False
-
 # ── 페이지 기본 설정 ──────────────────────────────────────────────
 st.set_page_config(
     page_title="당뇨병 위험도 예측",
@@ -35,8 +26,12 @@ st.set_page_config(
 def setup_font():
     """시스템에서 사용 가능한 한글 폰트를 자동으로 찾아 설정합니다."""
     korean_fonts = [
-        "NanumGothic", "NanumBarunGothic", "NanumMyeongjo",
-        "Malgun Gothic", "Apple SD Gothic Neo", "DejaVu Sans",
+      "Malgun Gothic",
+"NanumGothic",
+"NanumBarunGothic",
+"NanumMyeongjo",
+"Apple SD Gothic Neo",
+"DejaVu Sans",
     ]
     available = {f.name for f in fm.fontManager.ttflist}
     for font in korean_fonts:
