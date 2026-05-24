@@ -4,7 +4,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
-import matplotlib.pyplot as plt
 import platform
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
@@ -13,6 +12,12 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score
 import os
 
+font_path = "./NanumGothic.ttf"
+font_prop = fm.FontProperties(fname=font_path)
+
+plt.rc('font', family=font_prop.get_name())
+plt.rcParams['axes.unicode_minus'] = False
+
 # ── 페이지 기본 설정 ──────────────────────────────────────────────
 st.set_page_config(
     page_title="당뇨병 위험도 예측",
@@ -20,29 +25,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
-
-# ── 한글 폰트 설정 ────────────────────────────────────────────────
-@st.cache_resource
-def setup_font():
-    """시스템에서 사용 가능한 한글 폰트를 자동으로 찾아 설정합니다."""
-    korean_fonts = [
-      "Malgun Gothic",
-"NanumGothic",
-"NanumBarunGothic",
-"NanumMyeongjo",
-"Apple SD Gothic Neo",
-"DejaVu Sans",
-    ]
-    available = {f.name for f in fm.fontManager.ttflist}
-    for font in korean_fonts:
-        if font in available:
-            plt.rc("font", family=font)
-            plt.rcParams["axes.unicode_minus"] = False
-            return font
-    plt.rcParams["axes.unicode_minus"] = False
-    return "default"
-
-font_name = setup_font()
 
 # ── 의학 용어 사전 ────────────────────────────────────────────────
 MEDICAL_DICTIONARY = {
